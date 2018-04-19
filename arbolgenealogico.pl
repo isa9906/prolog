@@ -27,7 +27,7 @@ padrede('Carmelina','Daniel').
 padrede('Juan','Judy').
 padrede('Juan','Judy').
 padrede('Silvino','Juan').
-padrede('Filomea','Juan').
+padrede('Filomena','Juan').
 padrede('Rosa','Carmelina').
 padrede('Rosa','Cecilia').
 padrede('Rosa','Cruz').
@@ -48,17 +48,21 @@ padrede('Monica S','Thomas').
 hijode(A,B):-padrede(B,A).
 hermanode(A,B):-padrede(C,A),padrede(C,B),A\==B.  
 tiode(A,B):-padrede(C,B),hermanode(C,A).
+tiosegundode(A,B):-abuelode(C,B),hermanode(C,A).
 sobrinode(A,B):-tiode(B,A).
 abuelode(A,B):-padrede(A,C),padrede(C,B).
 nietode(A,B):-abuelode(B,A).
 primode(A,B):-padrede(C,A),padrede(D,B),hermanode(C,D).
+
+primosegundode(A,B):-(primode(A,C),hijode(B,C)).
+
 bisabuelode(A,B):-padrede(A,C),abuelode(C,B).
 bisnietode(A,B):-bisabuelode(B,A).
 
-casados(A,B):-padrede(A,C),padrede(B,C).
+casados(A,B):-padrede(A,C),padrede(B,C),A\==B.
 suegrode(A,B):-padrede(A,C),casados(C,B).
 yernode(A,B):-suegrode(B,A).
-cunadode(A,B):-casados(A,C),hermanode(C,B); (casados(B,C),hermanode(C,A)).
+cunadode(A,B):-casados(A,C),hermanode(C,B).
 esfeliz(A):- not(casados(A,X)).
 
 
