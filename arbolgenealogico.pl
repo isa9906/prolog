@@ -58,12 +58,13 @@ primosegundode(A,B):-(primode(A,C),hijode(B,C)).
 
 bisabuelode(A,B):-padrede(A,C),abuelode(C,B).
 bisnietode(A,B):-bisabuelode(B,A).
-
 casados(A,B):-padrede(A,C),padrede(B,C),A\==B.
 suegrode(A,B):-padrede(A,C),casados(C,B).
 yernode(A,B):-suegrode(B,A).
 cunadode(A,B):-casados(A,C),hermanode(C,B).
 esfeliz(A):- not(casados(A,X)).
+
+
 
 
 
